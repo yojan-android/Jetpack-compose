@@ -1,4 +1,4 @@
-package com.yojan.learning.ui.spotifyUI
+package com.yojan.learning.ui.spotifyUI.bottomMenu
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
@@ -33,37 +33,49 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.yojan.learning.R
+import com.yojan.learning.navigation.NavigationRoutesModel
+import com.yojan.learning.ui.spotifyUI.ArtisListModel
+import com.yojan.learning.ui.spotifyUI.ArtistList
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun SpotifyHome() {
+fun SpotifyHome(navController: NavController) {
+
     val artist = listOf(
-    ArtisListModel("1 (Remastered)", R.drawable.remastered),
-    ArtisListModel("Lana Del Rey", R.drawable.lana),
-    ArtisListModel("Marvin Gaye", R.drawable.marvin) ,
-    ArtisListModel("1 (Remastered)", R.drawable.remastered),
-    ArtisListModel("Lana Del Rey", R.drawable.lana),
-    ArtisListModel("Marvin Gaye", R.drawable.marvin)
+        ArtisListModel("1 (Remastered)", R.drawable.remastered),
+        ArtisListModel("Lana Del Rey", R.drawable.lana),
+        ArtisListModel("Marvin Gaye", R.drawable.marvin),
+        ArtisListModel("1 (Remastered)", R.drawable.remastered),
+        ArtisListModel("Lana Del Rey", R.drawable.lana),
+        ArtisListModel("Marvin Gaye", R.drawable.marvin)
     )
 
     val topForYou = listOf(
-        ArtisListModel("Your Top Songs 2021",R.drawable.top_songs),
-        ArtisListModel("Your Artists Revealed",R.drawable.your_artist)
+        ArtisListModel("Your Top Songs 2021", R.drawable.top_songs),
+        ArtisListModel("Your Artists Revealed", R.drawable.your_artist)
     )
 
     val editorPick = listOf(
-        ArtisListModel("Ed Sheeran, Big Sean \n Juice WRLD, Post Malone",R.drawable.editor_pick_first),
-        ArtisListModel("Your Artists Revealed",R.drawable.editor_pick_second),
-        ArtisListModel("Ed Sheeran, Big Sean \n Juice WRLD, Post Malone",R.drawable.editor_pick_first),
-        ArtisListModel("Your Artists Revealed",R.drawable.editor_pick_second),
-        ArtisListModel("Ed Sheeran, Big Sean \n Juice WRLD, Post Malone",R.drawable.editor_pick_first),
-        ArtisListModel("Your Artists Revealed",R.drawable.editor_pick_second)
+        ArtisListModel(
+            "Ed Sheeran, Big Sean \n Juice WRLD, Post Malone",
+            R.drawable.editor_pick_first
+        ),
+        ArtisListModel("Your Artists Revealed", R.drawable.editor_pick_second),
+        ArtisListModel(
+            "Ed Sheeran, Big Sean \n Juice WRLD, Post Malone",
+            R.drawable.editor_pick_first
+        ),
+        ArtisListModel("Your Artists Revealed", R.drawable.editor_pick_second),
+        ArtisListModel(
+            "Ed Sheeran, Big Sean \n Juice WRLD, Post Malone",
+            R.drawable.editor_pick_first
+        ),
+        ArtisListModel("Your Artists Revealed", R.drawable.editor_pick_second)
     )
 
     Scaffold(
@@ -85,29 +97,7 @@ fun SpotifyHome() {
                 }
 
             })
-        },
-        bottomBar = { NavigationBar {
-            NavigationBarItem(
-                selected = true,
-                onClick = {},
-                icon = { Icon(Icons.Default.Home, "Home") },
-                label = { Text("Home") }
-            )
-
-            NavigationBarItem(
-                selected = false,
-                onClick = {},
-                icon = { Icon(Icons.Default.Search, "Search") },
-                label = { Text("Search") }
-            )
-
-            NavigationBarItem(
-                selected = false,
-                onClick = {},
-                icon = { Icon(Icons.Default.LibraryMusic, "Library") },
-                label = { Text("Library") }
-            )
-        } }
+        }
     ) { innerPadding ->
         LazyColumn(modifier = Modifier
             .padding(innerPadding)) {
