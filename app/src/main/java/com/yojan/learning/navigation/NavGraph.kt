@@ -12,16 +12,22 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import com.yojan.learning.ui.launcher.LauncherScreen
 import com.yojan.learning.ui.roleType.RoleTypeScreen
 import com.yojan.learning.ui.spotifyUI.bottomMenu.LibraryScreenUI
 import com.yojan.learning.ui.spotifyUI.bottomMenu.SearchScreenUI
 import com.yojan.learning.ui.spotifyUI.bottomMenu.SpotifyHome
+import com.yojan.learning.ui.spotifyUI.topArtist.TopArtistScreenUI
+import com.yojan.learning.ui.spotifyUI.topMenu.NotificationScreenUI
+import com.yojan.learning.ui.spotifyUI.topMenu.RecentlyPlayedScreenUI
+import com.yojan.learning.ui.spotifyUI.topMenu.SettingsScreenUI
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "RestrictedApi")
 @Composable
@@ -94,6 +100,20 @@ fun NavGraph() {
             }
             composable<NavigationRoutesModel.LibraryScreenNav> {
                 LibraryScreenUI(navController)
+            }
+            composable<NavigationRoutesModel.ArtistScreenNav> { backStackEntry ->
+                val args = backStackEntry.toRoute<NavigationRoutesModel.ArtistScreenNav>()
+                TopArtistScreenUI(navController = navController,
+                    artistName = args.artistName)
+            }
+            composable<NavigationRoutesModel.SettingsScreenNav> {
+                SettingsScreenUI(navController)
+            }
+            composable<NavigationRoutesModel.RecentPlayScreenNav> {
+                RecentlyPlayedScreenUI(navController)
+            }
+            composable<NavigationRoutesModel.NotificationScreenNav> {
+                NotificationScreenUI(navController)
             }
         }
     }

@@ -13,17 +13,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.LibraryMusic
 import androidx.compose.material.icons.filled.NotificationImportant
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.SyncLock
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -83,15 +78,15 @@ fun SpotifyHome(navController: NavController) {
             title = { Text(text = "Recently Played",
                 fontWeight = FontWeight.Bold)
             },
-            actions = { IconButton(onClick = {}) {
+            actions = { IconButton(onClick = {navController.navigate(NavigationRoutesModel.NotificationScreenNav)}) {
                     Icon(imageVector = Icons.Default.NotificationImportant,
                         contentDescription = "Notification")
                 }
-                IconButton(onClick = {}) {
+                IconButton(onClick = { navController.navigate(NavigationRoutesModel.RecentPlayScreenNav) }) {
                     Icon(imageVector = Icons.Default.SyncLock,
                         contentDescription = "Recent")
                 }
-                IconButton(onClick = {}) {
+                IconButton(onClick = {navController.navigate(NavigationRoutesModel.SettingsScreenNav)}) {
                     Icon(imageVector = Icons.Default.Settings,
                         contentDescription = "Settings")
                 }
@@ -107,8 +102,12 @@ fun SpotifyHome(navController: NavController) {
                         .fillMaxSize()
                 ) {
                     ArtistList(
-                        modifier = Modifier, artistList = artist
-                    )
+                        modifier = Modifier, artistList = artist,
+                        onClick = {selectedArtist ->
+                            navController.navigate(
+                                NavigationRoutesModel.ArtistScreenNav(artistName = selectedArtist.name)
+                            )
+                        })
                     Row(
                         modifier = Modifier
                             .padding(10.dp)
@@ -136,7 +135,8 @@ fun SpotifyHome(navController: NavController) {
                             )
                         }
                     }
-                    ArtistList(modifier = Modifier, artistList = topForYou)
+                    ArtistList(modifier = Modifier, artistList = topForYou,
+                        onClick = {})
                     Spacer(modifier = Modifier.height(10.dp))
                     Text(
                         modifier = Modifier
@@ -147,7 +147,8 @@ fun SpotifyHome(navController: NavController) {
 
                     ArtistList(
                         modifier = Modifier,
-                        artistList = editorPick
+                        artistList = editorPick,
+                        onClick = {}
                     )
                 }
             }

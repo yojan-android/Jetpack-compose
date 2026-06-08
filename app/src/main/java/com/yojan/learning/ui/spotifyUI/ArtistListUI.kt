@@ -1,6 +1,8 @@
 package com.yojan.learning.ui.spotifyUI
 
+import android.R.attr.onClick
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -22,14 +24,16 @@ import com.yojan.learning.R
 @Composable
 fun ArtistList(
     modifier: Modifier,
-    artistList : List<ArtisListModel>) {
+    artistList : List<ArtisListModel>,
+    onClick : (ArtisListModel) -> Unit) {
 
     LazyRow(modifier
         .fillMaxWidth()) {
         items(artistList.size) {index->
             val artistList = artistList[index]
             Column(modifier = Modifier
-                .padding(10.dp),
+                .padding(10.dp)
+                .clickable {onClick(artistList)},
                 horizontalAlignment = Alignment.CenterHorizontally){
                 Image(painter = painterResource(id = artistList.imageRes),
                     contentDescription = artistList.name,
