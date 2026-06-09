@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.yojan.learning.navigation.NavGraph
+import com.yojan.learning.ui.fake.GetAllUsers
 import com.yojan.learning.ui.spotifyUI.bottomMenu.SpotifyHome
 import com.yojan.learning.ui.theme.LearningTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,8 +17,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             LearningTheme {
-//                SpotifyHome()
                 NavGraph()
+//                GetAllUsers()
             }
         }
     }

@@ -131,7 +131,7 @@ fun PostScreen(modifier: Modifier = Modifier) {
 fun PostScreenContent(uiState: UiState<List<PostModel>>) {
     when (uiState) {
         is UiState.Loading -> LoadingUI()
-        is UiState.Success -> PostUI(post = uiState.Response)
+        is UiState.Success -> PostUI(post = uiState.response)
         is UiState.Error   -> ErrorUI(message = uiState.message)
     }
 }
