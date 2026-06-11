@@ -5,7 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.yojan.learning.navigation.NavGraph
+import com.yojan.learning.ui.animationExample.ExpandableBoxAnimation
 import com.yojan.learning.ui.fake.GetAllUsers
+import com.yojan.learning.ui.fake.fakePerson.ui.UploadFakeUserUI
 import com.yojan.learning.ui.spotifyUI.bottomMenu.SpotifyHome
 import com.yojan.learning.ui.theme.LearningTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,7 +20,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             LearningTheme {
                 NavGraph()
-//                GetAllUsers()
             }
         }
     }

@@ -19,6 +19,11 @@ class FakeUserViewModel @Inject constructor(
     private var internalObsGetUserList : MutableStateFlow<UiState<List<FakeUsers>>> = MutableStateFlow(UiState.Loading)
     val publicObsGetUserList : StateFlow<UiState<List<FakeUsers>>> = internalObsGetUserList.asStateFlow()
 
+    private var ObsGetUserList : MutableStateFlow<UiState<List<FakeUsers>>> = MutableStateFlow(UiState.Loading)
+    val PubObsGetUserList : StateFlow<UiState<List<FakeUsers>>> = internalObsGetUserList.asStateFlow()
+
+
+
     fun getUserList() {
         viewModelScope.launch {
             internalObsGetUserList.value = UiState.Loading
@@ -27,6 +32,19 @@ class FakeUserViewModel @Inject constructor(
                 internalObsGetUserList.value = UiState.Success(users)
             } catch (exception : Exception) {
                 internalObsGetUserList.value = UiState.Error("$exception")
+            }
+
+        }
+    }
+
+    fun userList() {
+        viewModelScope.launch {
+            internalObsGetUserList.value = UiState.Loading
+            try {
+                val users = repository.getUsers()
+                ObsGetUserList.value = UiState.Success(users)
+            } catch (exception : Exception) {
+                ObsGetUserList.value = UiState.Error("$exception")
             }
 
         }

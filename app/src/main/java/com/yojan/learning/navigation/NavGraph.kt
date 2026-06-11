@@ -1,6 +1,7 @@
 package com.yojan.learning.navigation
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.LibraryMusic
@@ -12,7 +13,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.navigation.NavController
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -30,6 +32,7 @@ import com.yojan.learning.ui.spotifyUI.topMenu.RecentlyPlayedScreenUI
 import com.yojan.learning.ui.spotifyUI.topMenu.SettingsScreenUI
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "RestrictedApi")
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun NavGraph() {
     val navController = rememberNavController()
@@ -82,7 +85,7 @@ fun NavGraph() {
             }
         }
     ) { innerPadding->
-        NavHost(
+        NavHost(modifier = Modifier.padding(innerPadding),
             navController = navController,
             startDestination = NavigationRoutesModel.HomeScreenNav
         ) {

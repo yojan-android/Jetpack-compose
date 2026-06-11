@@ -39,6 +39,10 @@ fun LauncherScreen(navController: NavHostController) {
                 }
             }
         }
+
+        else -> {
+            Unit
+        }
     }
 
 }
